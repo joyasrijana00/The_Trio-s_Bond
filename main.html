@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trio's Bond: A Friendship Page (Ultra Premium Dark Mode)</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import for a warm, friendly feel */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Pacifico&display=swap');
+        
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Set a deep background for high contrast */
+        body {
+            background-color: #030712; /* A near-black for depth (gray-950) */
+        }
+
+        /* Custom scrollbar styling for aesthetics */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #f87171; /* Red-400 */
+            border-radius: 4px;
+        }
+        body::-webkit-scrollbar-track {
+            background-color: #111827; /* Gray-900 */
+        }
+
+        /* --- Custom Lovely Animations --- */
+        
+        /* 1. Subtle Pulse for the Hero Icon - Enhanced Shadow */
+        @keyframes heartPulse {
+            0% { transform: scale(1.0); box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(239, 68, 68, 0.8), 0 0 10px rgba(239, 68, 68, 0.4); }
+            100% { transform: scale(1.0); box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+        }
+        .animate-pulse-subtle {
+            animation: heartPulse 3s infinite ease-in-out;
+        }
+
+        /* 2. Slide-In Entrance for Cards and Headers */
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in-fast {
+            animation: fadeInSlide 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0; 
+        }
+        
+        /* 3. Sparkling Effect Styles */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #fca5a5; 
+            border-radius: 50%;
+            box-shadow: 0 0 6px 3px rgba(252, 165, 165, 0.7); 
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+        }
+        @keyframes sparkleFade {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(0.5) translateY(-10px); }
+        }
+
+        /* 4. Custom Class for a Subtle Glowing Border on Cards */
+        .card-glow-border {
+            border: 1px solid transparent; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease-in-out;
+        }
+        .card-glow-border:hover {
+            border-color: #dc2626; 
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* 5. Animated Particle Background CSS */
+        .particles-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Below content (z-index 20) */
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(248, 113, 113, 0.4); /* Red-400 semi-transparent */
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 20s infinite ease-in-out;
+        }
+
+        /* Keyframes for large, slow-moving background particles */
+        @keyframes floatParticle {
+            0% { transform: translateY(0vh) translateX(0vw) scale(1); opacity: 0; }
+            25% { opacity: 0.5; }
+            50% { transform: translateY(100vh) translateX(50vw) scale(1.2); opacity: 0.2; }
+            75% { opacity: 0.5; }
+            100% { transform: translateY(0vh) translateX(100vw) scale(1); opacity: 0; }
+        }
+
+        /* 6. Hero Title Gradient (Shimmer Effect) */
+        .text-shimmer {
+            background: linear-gradient(90deg, #fca5a5, #f87171, #fca5a5); /* Red-300, Red-400, Red-300 */
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s infinite linear;
+            display: inline-block; /* Required for background-clip to work */
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* 7. Section Divider CSS (SVG shape styled) */
+        .section-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            /* transform: rotate(180deg); This is for the bottom of the section. Removing for top wave. */
+            z-index: 5; /* Ensure it overlaps the section above */
+        }
+
+        .section-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px; 
+        }
+
+        .section-divider .shape-fill {
+            fill: #030712; /* Match the Profiles section background color (gray-950) */
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-950 text-gray-200">
+
+    <!-- Global Animated Particle Background -->
+    <div class="particles-background"></div>
+    <!-- JavaScript will generate particles here -->
+    
+    <!-- Header & Navigation (Fixed position and slightly translucent for effect) -->
+    <header class="sticky top-0 z-50 bg-gray-950 shadow-2xl backdrop-blur-sm bg-opacity-90 border-b border-red-800/50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <h1 class="text-4xl font-pacifico text-red-400 hover:text-red-300 transition duration-300">
+                The Trio
+            </h1>
+            <div class="space-x-4">
+                <a href="#profiles" class="text-red-300 hover:text-red-100 hover:underline transition duration-300 font-medium tracking-wider">Profiles</a>
+                <a href="#memories" class="text-red-300 hover:text-red-100 hover:underline transition duration-300 font-medium tracking-wider">Memories</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section (Deep gradient with subtle pattern) -->
+    <section id="hero" class="relative overflow-hidden pt-20 pb-24 bg-gradient-to-br from-gray-950 to-red-950/70 z-20">
+        <!-- Sparkles will be generated inside this section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
+            
+            <!-- Hero Photo Container - Continuous Pulse Effect applied here -->
+            <div class="inline-block p-3 bg-gray-800 rounded-full shadow-2xl mb-6 animate-pulse-subtle border-4 border-red-700/50">
+                <!-- Image with subtle rotation on hover -->
+                <img class="w-48 h-48 object-cover rounded-full border-4 border-red-500 hover:rotate-2 transition duration-500" 
+                     src="t7.jpg" 
+                     alt="Three friends photo">
+            </div>
+            
+            <!-- Title with Text Shimmer/Gradient -->
+            <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 animate-slide-in-fast">
+                <span class="text-shimmer" style="text-shadow: 0 0 15px rgba(252, 165, 165, 0.6);">The Unbreakable Bond</span>
+            </h2>
+            
+            <p class="text-xl md:text-2xl text-red-200 max-w-4xl mx-auto mb-10 font-light italic animate-slide-in-fast delay-200">
+                "Finding friends with the same mental disorder: priceless." Celebrating the laughter, the support, and the countless adventures of our trio.
+            </p>
+            
+            <a href="#profiles" class="inline-block bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-10 rounded-full text-lg shadow-2xl shadow-red-500/30 transition duration-300 transform hover:scale-105 animate-slide-in-fast delay-400 ring-2 ring-red-400 ring-offset-2 ring-offset-gray-950">
+                Meet the Squad &darr;
+            </a>
+        </div>
+
+        <!-- Section Divider (Wave Shape) -->
+        <div class="section-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.35-16.63-250.45.39-57.84,12.63-113.82,42.5-170.18,50.94-136.69,20.25-274.67-15.1-410.74-51.44S1,18.91,1,18.91V0H1200V5.41s-162,40.48-214.34,87.42Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ⭐⭐⭐ UPDATED PROFILE SECTION ⭐⭐⭐ -->
+<section id="profiles" class="py-20 bg-gray-950 relative z-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <h3 class="text-4xl font-bold text-center text-red-400 mb-16 animate-slide-in-fast"
+            style="text-shadow:0 0 8px rgba(252,165,165,0.2);">Who We Are</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+
+            <!-- Joyita -->
+            <div class="card-glow-border bg-gray-800 p-8 rounded-2xl shadow-xl hover:scale-105 duration-300 animate-slide-in-fast delay-200">
+                <div class="text-center mb-6">
+                    <img class="w-44 h-44 object-cover rounded-full mx-auto border-4 border-red-500 ring-4 ring-red-900 shadow-xl"
+                         src="joyita.jpg">
+                </div>
+                <h4 class="text-3xl text-center font-bold text-red-400">Joyita</h4>
+                
+                <p class="text-gray-300 text-center">Sweet, calm and always caring.</p>
+            </div>
+
+            <!-- Joyasri -->
+            <div class="card-glow-border bg-gray-800 p-8 rounded-2xl shadow-xl hover:scale-105 duration-300 animate-slide-in-fast delay-400">
+                <div class="text-center mb-6">
+                    <img class="w-44 h-44 object-cover rounded-full mx-auto border-4 border-red-500 ring-4 ring-red-900 shadow-xl"
+                         src="joyasri.jpg">
+                </div>
+                <h4 class="text-3xl text-center font-bold text-red-400">Joyasri</h4>
+                <p class="text-gray-300 text-center">Full of fun, chaos & positive energy.</p>
+            </div>
+
+            <!-- Tumpa -->
+            <div class="card-glow-border bg-gray-800 p-8 rounded-2xl shadow-xl hover:scale-105 duration-300 animate-slide-in-fast delay-600">
+                <div class="text-center mb-6">
+                    <img class="w-44 h-44 object-cover rounded-full mx-auto border-4 border-red-500 ring-4 ring-red-900 shadow-xl"
+                         src="tumpa.jpg">
+                </div>
+                <h4 class="text-3xl text-center font-bold text-red-400">Tumpa</h4>
+               
+                <p class="text-gray-300 text-center">Funny, cute, and unforgettable.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Memories Section - Clean Grid with Caption Below -->
+<section id="memories" class="py-20 bg-gray-900 relative z-20">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <h3 class="text-4xl font-bold text-center text-red-400 mb-16 animate-slide-in-fast"
+            style="text-shadow:0 0 8px rgba(252,165,165,0.2);">Our Best Memories</h3>
+
+        <!-- GRID: Bigger Boxes + 3D Hover + Caption Below -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+            <!-- MEMORY 1 -->
+             <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:-rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t4.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">"The first time we realized we were going to be inseparable"</p>
+            </div>
+           
+
+            <!-- MEMORY 2 -->
+            <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:-rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t2.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">“Ethnic vibe + pure smiles = perfect day”</p>
+            </div>
+
+            <!-- MEMORY 3 -->
+              <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t1.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">“These benches have seen our friendship grow"</p>
+            </div>
+            
+
+            <!-- MEMORY 4 -->
+            <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t3.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">“From classroom laughs to festival memories — always together”</p>
+            </div>
+
+            <!-- MEMORY 5 -->
+            <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:-rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t6.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">"A picture that says it all"</p>
+            </div>
+
+            <!-- MEMORY 6 -->
+            
+            <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t8.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">"Forever kind of bond"</p>
+            </div>
+
+            <!-- MEMORY 7 -->
+            
+            <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t5.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">“Old memories, new stories — same bond”</p>
+            </div>
+
+            <!-- MEMORY 8 -->
+            <div class="text-center">
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl
+                            transform hover:scale-[1.08] hover:-rotate-1 transition-all duration-500
+                            hover:shadow-red-800/60">
+                    <img src="t9.jpg"
+                         class="w-full h-60 object-cover transition-all duration-700 group-hover:scale-110">
+                </div>
+                <p class="text-red-200 text-lg mt-3 font-light">"Moments that stay forever"</p>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-16 animate-slide-in-fast delay-800">
+                <p class="text-2xl text-red-300 font-pacifico italic">"Good friends are like stars. You don't always see them, but you know they're always there."</p>
+            </div>
+
+
+    </div>
+</section>
+
+
+    <!-- Simple Footer for copyright/end of page -->
+    <footer class="py-8 bg-red-900/70 border-t border-red-700/50 text-white text-center relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           
+    <p>© 2025 Joyasri Jana — Creating Digital Magic with Heart & Vision.</p>
+  
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Particle and Sparkle Effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.getElementById('hero');
+            const particlesContainer = document.querySelector('.particles-background');
+
+            if (!heroSection || !particlesContainer) return;
+
+            // --- Sparkle Effect (Small, fast-moving effect inside the Hero section) ---
+            function createSparkle() {
+                const sparkle = document.createElement('span');
+                sparkle.className = 'sparkle';
+                
+                const rect = heroSection.getBoundingClientRect();
+                
+                // Position sparkles only within the Hero section
+                const x = Math.random() * rect.width;
+                const y = Math.random() * rect.height;
+
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                
+                const duration = 1.8 + Math.random(); 
+                const delay = Math.random() * 0.8; 
+
+                sparkle.style.animation = `sparkleFade ${duration}s ease-out ${delay}s forwards`;
+
+                heroSection.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, (duration * 1000) + (delay * 1000) + 100);
+            }
+
+            // Continuously generate sparkles in the hero
+            setInterval(createSparkle, 100);
+
+
+            // --- Particle Background Effect (Large, slow-moving across the screen) ---
+            const maxParticles = 20;
+
+            function createBackgroundParticle() {
+                // If we already have enough particles, stop creating more
+                if (particlesContainer.childElementCount >= maxParticles) return;
+
+                const particle = document.createElement('span');
+                particle.className = 'particle';
+
+                // Random size (30px to 80px)
+                const size = 30 + Math.random() * 50; 
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random starting position (off-screen top/left/right)
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                particle.style.left = `${startX}vw`;
+                particle.style.top = `-${size}px`; // Start slightly above the viewport
+
+                // Randomize animation duration (15s to 35s) and delay
+                const duration = 15 + Math.random() * 20;
+                const delay = Math.random() * 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+
+                // Inject the particle into the background container
+                particlesContainer.appendChild(particle);
+
+                // Re-create the particle when its animation ends to keep the cycle going
+                particle.addEventListener('animationiteration', () => {
+                    // Reset position and duration for a continuous flow
+                    const newDuration = 15 + Math.random() * 20;
+                    const newDelay = Math.random() * 5;
+                    particle.style.animationDuration = `${newDuration}s`;
+                    particle.style.animationDelay = `${newDelay}s`;
+                    particle.style.opacity = 0; // Hide instantly for the restart
+                });
+            }
+
+            // Create initial set of particles
+            for (let i = 0; i < maxParticles; i++) {
+                createBackgroundParticle();
+            }
+        });
+    </script>
+
+</body>
+</html>
